@@ -7,6 +7,7 @@
     "doc": "doc"
   },
   "scripts": {
+    "start": "webpack serve --mode development --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
