@@ -1,0 +1,33 @@
+{
+  "name": "in-progress",
+  "version": "1.0.0",
+  "description": "Limited WIP(Work In Progress) Task Visualization Tool",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/axios": "^0.14.4",
+    "@types/express": "^5.0.0",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "@types/socket.io": "^3.0.2",
+    "axios": "^1.7.9",
+    "azure-storage": "^2.10.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "socket.io": "^4.8.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
