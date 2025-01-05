@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import { Server } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 import http from 'http';
 import boardRoutes from './routes/board';
 import stageRoutes from './routes/stage';
@@ -24,15 +24,14 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/public/index.html'));
 });
 
-mongoose.connect('mongodb://localhost/in-progress')
-    .then(() => {
-        console.log('Connected to MongoDB');
-    })
-    .catch((error) => {
-        console.error('Error connecting to MongoDB:', error);
-    });
+mongoose.connect('mongodb://root:NSFQ5undasLVbg2vcoKQDPq7Q9wDoxXwRrZwWSKxKJ4K3wp9He@localhost:27017/in-progress')  .then(() => {
+      console.log('Connected to MongoDB');
+  })
+  .catch((error) => {
+      console.error('Error connecting to MongoDB:', error);
+  });
 
-io.on('connection', (socket) => {
+io.on('connection', (socket: Socket) => {
     console.log('a user connected');
     socket.on('disconnect', () => {
         console.log('user disconnected');
