@@ -1,17 +1,7 @@
-import app from './app';
-import http from 'http';
-import socketIo from 'socket.io';
+import server from './app';
 
-const server = http.createServer(app);
-const io = new socketIo.Server(server);
+const PORT = process.env.PORT || 3000;
 
-io.on('connection', (socket) => {
-    console.log('a user connected');
-    socket.on('disconnect', () => {
-        console.log('user disconnected');
-    });
-});
-
-server.listen(3000, () => {
-    console.log('Server is running on port 3000');
+server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });

@@ -1,13 +1,9 @@
-import express, { Request, Response } from 'express';
-import Board from '../models/board';
+import { Router } from 'express';
+import { getBoards, createBoard } from '../controllers/boardController';
 
-const router = express.Router();
+const router = Router();
 
-router.post('/create', async (req: Request, res: Response) => {
-    const { title, subtitle, users } = req.body;
-    const board = new Board({ title, subtitle, users });
-    await board.save();
-    res.status(201).send(board);
-});
+router.get('/', getBoards);
+router.post('/', createBoard);
 
 export default router;

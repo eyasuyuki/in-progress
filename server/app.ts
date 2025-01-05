@@ -1,16 +1,42 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import { Server } from 'socket.io';
+import http from 'http';
 import boardRoutes from './routes/board';
 import stageRoutes from './routes/stage';
 import cardRoutes from './routes/card';
+import path from 'path';
 
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
 
 app.use(express.json());
 app.use('/boards', boardRoutes);
 app.use('/stages', stageRoutes);
 app.use('/cards', cardRoutes);
 
-mongoose.connect('mongodb://localhost/in-progress');
+// 静的ファイルの提供
+app.use(express.static(path.join(__dirname, '../client/public')));
 
-export default app;
+// ルートパスの処理
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/public/index.html'));
+});
+
+mongoose.connect('mongodb://localhost/in-progress')
+    .then(() => {
+        console.log('Connected to MongoDB');
+    })
+    .catch((error) => {
+        console.error('Error connecting to MongoDB:', error);
+    });
+
+io.on('connection', (socket) => {
+    console.log('a user connected');
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+});
+
+export default server;

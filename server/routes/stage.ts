@@ -1,13 +1,9 @@
-import express, { Request, Response } from 'express';
-import Stage from '../models/stage';
+import { Router } from 'express';
+import { getStages, createStage } from '../controllers/stageController';
 
-const router = express.Router();
+const router = Router();
 
-router.post('/create', async (req: Request, res: Response) => {
-    const { title, subtitle, boardId } = req.body;
-    const stage = new Stage({ title, subtitle, board: boardId });
-    await stage.save();
-    res.status(201).send(stage);
-});
+router.get('/', getStages);
+router.post('/', createStage);
 
 export default router;

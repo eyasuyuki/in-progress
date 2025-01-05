@@ -1,15 +1,17 @@
 import React from 'react';
 import Card from './Card';
 
+interface CardType {
+    _id: string;
+    title: string;
+    comments: string;
+}
+
 interface StageProps {
     stage: {
         _id: string;
         title: string;
-        cards: {
-            _id: string;
-            title: string;
-            comments: string;
-        }[];
+        cards: CardType[];
     };
 }
 

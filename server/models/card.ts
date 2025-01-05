@@ -1,27 +1,10 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose from 'mongoose';
 
-interface ICard extends Document {
-    title: string;
-    assignees: string[];
-    url: string;
-    status: string;
-    dueDate: Date;
-    startDate: Date;
-    endDate: Date;
-    comments: string;
-    stage: mongoose.Types.ObjectId;
-}
-
-const CardSchema: Schema = new Schema({
+const cardSchema = new mongoose.Schema({
     title: { type: String, required: true },
-    assignees: [String],
-    url: String,
-    status: { type: String, default: '未着手' },
-    dueDate: Date,
-    startDate: Date,
-    endDate: Date,
-    comments: String,
-    stage: { type: Schema.Types.ObjectId, ref: 'Stage' }
+    comments: { type: String, required: true }
 });
 
-export default mongoose.model<ICard>('Card', CardSchema);
+const Card = mongoose.model('Card', cardSchema);
+
+export default Card;
